@@ -1,377 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <title>cs作業</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <title>cs作業</title>
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    /* html {
+      /* html {
       width: 1366px;
       height: 1080px
     } */
 
-    body {
-      height: 92vh;
-      width: 100vw;
-      /* width: 100%; */
-      background: url(/cs_bg_new.jpg) no-repeat;
-      background-position: center;
-      background-size: cover;
-    }
-
-
-    #container {
-      height: 600px;
-      width: 800px;
-      margin: auto;
-      /* background-color: blue; */
-    }
-
-    #wrap {
-      height: 500px;
-      width: 100%;
-      border: 20px solid rgb(76, 88, 68);
-      box-shadow: 1.5px 1.5px 1px rgb(39, 39, 39), -0.3px -1px white;
-      box-sizing: border-box;
-      /* margin: auto; */
-      background: url(/italy.jpg) no-repeat;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      cursor: url(/shoot_cursor.png) 50 50, auto;
-    }
-
-    #wrap2 {
-      width: 100%;
-      /* height: 268px; */
-      position: relative;
-      /* background-color: brown; */
-    }
-
-    .btn-box {
-      width: 300px;
-      /* background-color: white; */
-      /* margin: auto; */
-      /* text-align: center; */
-      margin-top: 50px;
-    }
-
-    #wrap2 input {
-      font-size: 20px;
-      font-weight: 700;
-      color: rgba(160, 160, 160, 0.8);
-      display: block;
-      margin: 20px 0;
-      border: none;
-      background-color: transparent;
-    }
-
-    #wrap2 input:hover {
-      color: rgba(228, 228, 228, .8);
-    }
-
-    #ak47 {
-      position: absolute;
-      right: 0;
-      bottom: -4px;
-    }
-
-    #ak47 img {
-      width: 400px;
-    }
-
-    #wrap p {
-      color: rgba(255, 255, 0, 0.7);
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      font-family: 'Press Start 2P', cursive;
-      letter-spacing: 1px;
-    }
-
-    #wrap .timeleft {
-      position: absolute;
-      left: 350px;
-      z-index: 15;
-    }
-
-    #wrap .bulletleft {
-      position: absolute;
-      left: 680px;
-    }
-
-    #wrap #gunfire {
-      position: absolute;
-      top: 195px;
-      right: 250px;
-      /* visibility: hidden; */
-      display: none;
-      /* transition: .3s; */
-    }
-
-    #wrap:active #gunfire {
-      position: absolute;
-      top: 195px;
-      right: 250px;
-      /* visibility: visible */
-      display: block;
-    }
-
-    #reload {
-      border: 5px solid red;
-      padding: 5px;
-      background-color: transparent;
-      color: rgba(255, 255, 0, 0.7);
-      position: absolute;
-      bottom: 50px;
-      right: 10px;
-      font-family: 'Press Start 2P', cursive;
-      letter-spacing: 1px;
-      box-shadow: 0px 0px 10px red;
-      transition: .2s;
-      /* display: none; */
-    }
-
-    #reload:hover {
-      background-color: rgba(255, 255, 0, 0.7);
-      color: black;
-      cursor: url(/bullet_hover.png) 25 25, auto;
-      bottom: 53px;
-    }
-
-
-    .zombie1 {
-      position: absolute;
-      top: 120px;
-      left: 50px;
-      display: none;
-    }
-
-    .zombie2 {
-      position: absolute;
-      top: 300px;
-      left: 70px;
-      width: 100px;
-      display: none;
-
-    }
-
-    .zombie3 {
-      position: absolute;
-      top: 200px;
-      left: 290px;
-      width: 50px;
-      display: none;
-
-    }
-
-    .zombie4 {
-      position: absolute;
-      top: 200px;
-      left: 400px;
-      width: 50px;
-      display: none;
-
-    }
-
-    .zombie5 {
-      position: absolute;
-      top: 230px;
-      left: 250px;
-      width: 150px;
-      display: none;
-      z-index: 10;
-
-    }
-
-    .zombie6 {
-      position: absolute;
-      top: 200px;
-      right: 0px;
-      width: 100px;
-      display: none;
-      z-index: 11;
-    }
-
-    .zombie7 {
-      position: absolute;
-      top: 150px;
-      right: 80px;
-      width: 80px;
-      display: none;
-    }
-
-    .zombie8 {
-      position: absolute;
-      top: 180px;
-      left: 200px;
-      width: 100px;
-      display: none;
-    }
-
-    .showup {
-      display: block;
-    }
-
-    .bulletimg {
-      position: absolute;
-      width: 13px;
-      bottom: 0;
-      right: 100px;
-      z-index: 20;
-      padding-bottom: 3px;
-    }
-  </style>
-</head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div id="zombie">
-        <div><img class="zombie1" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie2" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie3" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie4" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie5" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie6" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie7" id="zombieimg" src="/zombie.png" width="65px"></div>
-        <div><img class="zombie8" id="zombieimg" src="/zombie.png" width="65px"></div>
-      </div>
-
-      <img class="radar" src="/radar.png" width="130px">
-      <img class="bulletimg" src="/bullet.png">
-      <div id="ak47"><img src="/counter_strike_PNG25.png"></div>
-      <img id="gunfire" src="/gunfire1.png" width="150px">
-
-      <p>Score : <span id="text-score">0</span></p>
-      <p class="timeleft"><span id="time-left">00:30</span></p>
-      <p class="bulletleft"><span id="bullet-left">30</span>/∞</p>
-      <input type="button" value="Reload" id="reload">
-    </div>
-
-    <div id="wrap2">
-      <div class="btn-box">
-        <input type="button" value="New Game" id="btn-start">
-        <input type="button" value="Restart" id="btn-restart" onclick="location.reload()">
-        <input type="button" value="Quit" id="btn-quit" onclick="window.close()">
-
-      </div>
-    </div>
-  </div>
-
-  <audio src="/sound/weapons/ak47-1_cut.wav" id="akshoot"></audio>
-  <audio src="/sound/letsgo.mp3" id="letsgo"></audio>
-
-  <script>
-    const btnStart = document.getElementById('btn-start')
-    const zombies = document.querySelectorAll('#zombie img')
-    const textScore = document.getElementById('text-score')
-    const timeLeft = document.getElementById('time-left')
-    const wrap = document.getElementById('wrap')
-    const bulletLeft = document.getElementById('bullet-left')
-    const reload = document.getElementById('reload')
-    const gunfire = document.getElementById('gunfire')
-    // audio
-    const akshoot = document.getElementById('akshoot')
-    const letsgo = document.getElementById('letsgo')
-
-    let score = 0
-    let isInGame = 0
-    let timer = 0
-    let number = 30
-    let bullet = 30
-
-    // 點擊開始時
-    btnStart.onclick = () => {
-      letsgo.play()
-      btnStart.disabled = true
-      bullet = 30
-      score = 0
-      textScore.innerText = score
-      inInGame = true
-      timer = setInterval(game, 1000)
-      setTimeout(end, 30000)
-
-      // 倒數計時
-      let clock = setInterval(() => {
-        number--
-        timeLeft.innerText = `00:${number}`
-        if (number === 0) {
-          clearInterval(clock)
-          timeLeft.innerText = 'Game Over'
-          wrap.style.filter = "grayscale(1)"
-        }
-      }, 1000)
-
-      wrap.onmousedown = () => {
-        akshoot.play()
-        bulletLeft.innerText = `${bullet}`
-        bullet--
-        // gunfire.style.display = "block"
-        // wrap.onmouseup = gunfire.style.display = "none"
-
-        if (bullet < 0) {
-          wrap.style.cursor = "not-allowed"
-          bulletLeft.innerText = `0`
-          akshoot.pause()
-        }
+      body {
+        height: 100vh;
+        width: 100vw;
+        /* width: 100%; */
+        background: url(./cs_bg_new.jpg) no-repeat;
+        background-position: center;
+        background-size: cover;
       }
 
-      reload.onclick = () => {
+      #container {
+        height: 600px;
+        width: 800px;
+        margin: auto;
+        /* background-color: blue; */
+      }
+
+      #wrap {
+        height: 500px;
+        width: 100%;
+        border: 20px solid rgb(76, 88, 68);
+        box-shadow: 1.5px 1.5px 1px rgb(39, 39, 39), -0.3px -1px white;
+        box-sizing: border-box;
+        /* margin: auto; */
+        background: url(./italy.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        cursor: url(./shoot_cursor.png) 50 50, auto;
+      }
+
+      #wrap2 {
+        width: 100%;
+        /* height: 268px; */
+        position: relative;
+        /* background-color: brown; */
+      }
+
+      .btn-box {
+        width: 300px;
+        /* background-color: white; */
+        /* margin: auto; */
+        /* text-align: center; */
+        margin-top: 50px;
+      }
+
+      #wrap2 input {
+        font-size: 20px;
+        font-weight: 700;
+        color: rgba(160, 160, 160, 0.8);
+        display: block;
+        margin: 20px 0;
+        border: none;
+        background-color: transparent;
+      }
+
+      #wrap2 input:hover {
+        color: rgba(228, 228, 228, 0.8);
+      }
+
+      #ak47 {
+        position: absolute;
+        right: 0;
+        bottom: -4px;
+      }
+
+      #ak47 img {
+        width: 400px;
+      }
+
+      #wrap p {
+        color: rgba(255, 255, 0, 0.7);
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-family: 'Press Start 2P', cursive;
+        letter-spacing: 1px;
+      }
+
+      #wrap .timeleft {
+        position: absolute;
+        left: 350px;
+        z-index: 15;
+      }
+
+      #wrap .bulletleft {
+        position: absolute;
+        left: 680px;
+      }
+
+      #wrap #gunfire {
+        position: absolute;
+        top: 195px;
+        right: 250px;
+        /* visibility: hidden; */
+        display: none;
+        /* transition: .3s; */
+      }
+
+      #wrap:active #gunfire {
+        position: absolute;
+        top: 195px;
+        right: 250px;
+        /* visibility: visible */
+        display: block;
+      }
+
+      #reload {
+        border: 5px solid red;
+        padding: 5px;
+        background-color: transparent;
+        color: rgba(255, 255, 0, 0.7);
+        position: absolute;
+        bottom: 50px;
+        right: 10px;
+        font-family: 'Press Start 2P', cursive;
+        letter-spacing: 1px;
+        box-shadow: 0px 0px 10px red;
+        transition: 0.2s;
+        /* display: none; */
+      }
+
+      #reload:hover {
+        background-color: rgba(255, 255, 0, 0.7);
+        color: black;
+        cursor: url(./bullet_hover.png) 25 25, auto;
+        bottom: 53px;
+      }
+
+      .zombie1 {
+        position: absolute;
+        top: 120px;
+        left: 50px;
+        display: none;
+      }
+
+      .zombie2 {
+        position: absolute;
+        top: 300px;
+        left: 70px;
+        width: 100px;
+        display: none;
+      }
+
+      .zombie3 {
+        position: absolute;
+        top: 200px;
+        left: 290px;
+        width: 50px;
+        display: none;
+      }
+
+      .zombie4 {
+        position: absolute;
+        top: 200px;
+        left: 400px;
+        width: 50px;
+        display: none;
+      }
+
+      .zombie5 {
+        position: absolute;
+        top: 230px;
+        left: 250px;
+        width: 150px;
+        display: none;
+        z-index: 10;
+      }
+
+      .zombie6 {
+        position: absolute;
+        top: 200px;
+        right: 0px;
+        width: 100px;
+        display: none;
+        z-index: 11;
+      }
+
+      .zombie7 {
+        position: absolute;
+        top: 150px;
+        right: 80px;
+        width: 80px;
+        display: none;
+      }
+
+      .zombie8 {
+        position: absolute;
+        top: 180px;
+        left: 200px;
+        width: 100px;
+        display: none;
+      }
+
+      .showup {
+        display: block;
+      }
+
+      .bulletimg {
+        position: absolute;
+        width: 13px;
+        bottom: 0;
+        right: 100px;
+        z-index: 20;
+        padding-bottom: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="wrap">
+        <div id="zombie">
+          <div><img class="zombie1" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie2" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie3" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie4" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie5" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie6" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie7" id="zombieimg" src="./zombie.png" width="65px" /></div>
+          <div><img class="zombie8" id="zombieimg" src="./zombie.png" width="65px" /></div>
+        </div>
+
+        <img class="radar" src="./radar.png" width="130px" />
+        <img class="bulletimg" src="./bullet.png" />
+        <div id="ak47"><img src="./counter_strike_PNG25.png" /></div>
+        <img id="gunfire" src="./gunfire1.png" width="150px" />
+
+        <p>Score : <span id="text-score">0</span></p>
+        <p class="timeleft"><span id="time-left">00:30</span></p>
+        <p class="bulletleft"><span id="bullet-left">30</span>/∞</p>
+        <input type="button" value="Reload" id="reload" />
+      </div>
+
+      <div id="wrap2">
+        <div class="btn-box">
+          <input type="button" value="New Game" id="btn-start" />
+          <input type="button" value="Restart" id="btn-restart" onclick="location.reload()" />
+          <input type="button" value="Quit" id="btn-quit" onclick="window.close()" />
+        </div>
+      </div>
+    </div>
+
+    <audio src="./sound/weapons/ak47-1_cut.wav" id="akshoot"></audio>
+    <audio src="./sound/letsgo.mp3" id="letsgo"></audio>
+
+    <script>
+      const btnStart = document.getElementById('btn-start')
+      const zombies = document.querySelectorAll('#zombie img')
+      const textScore = document.getElementById('text-score')
+      const timeLeft = document.getElementById('time-left')
+      const wrap = document.getElementById('wrap')
+      const bulletLeft = document.getElementById('bullet-left')
+      const reload = document.getElementById('reload')
+      const gunfire = document.getElementById('gunfire')
+      // audio
+      const akshoot = document.getElementById('akshoot')
+      const letsgo = document.getElementById('letsgo')
+
+      let score = 0
+      let isInGame = 0
+      let timer = 0
+      let number = 30
+      let bullet = 30
+
+      // 點擊開始時
+      btnStart.onclick = () => {
+        letsgo.play()
+        btnStart.disabled = true
         bullet = 30
+        score = 0
+        textScore.innerText = score
+        inInGame = true
+        timer = setInterval(game, 1000)
+        setTimeout(end, 30000)
+
+        // 倒數計時
+        let clock = setInterval(() => {
+          number--
+          timeLeft.innerText = `00:${number}`
+          if (number === 0) {
+            clearInterval(clock)
+            timeLeft.innerText = 'Game Over'
+            wrap.style.filter = 'grayscale(1)'
+          }
+        }, 1000)
+
+        wrap.onmousedown = () => {
+          akshoot.currentTime = 0
+          akshoot.play()
+          bulletLeft.innerText = `${bullet}`
+          bullet--
+          // gunfire.style.display = "block"
+          // wrap.onmouseup = gunfire.style.display = "none"
+
+          if (bullet < 0) {
+            wrap.style.cursor = 'not-allowed'
+            bulletLeft.innerText = `0`
+            akshoot.pause()
+          }
+        }
+
+        reload.onclick = () => {
+          bullet = 30
+        }
+
+        // wrap.onmousedown = () => {
+        // }
       }
 
-      // wrap.onmousedown = () => {
+      // 計時開始
+      const game = () => {
+        for (const zombie of zombies) {
+          zombie.classList.remove('showup')
+        }
+
+        for (let i = 0; i < 3; i++) {
+          const random = Math.floor(Math.random() * 8)
+          zombies[random].classList.add('showup')
+        }
+      }
+
+      // 計時結束
+      const end = () => {
+        clearInterval(timer)
+        for (const zombie of zombies) {
+          zombie.classList.remove('showup')
+        }
+      }
+
+      // 更改殭屍圖片
+      // const changeSrc = () => {
+      //   document.getElementById('zombieimg').src = "/blood_zombie.png"
       // }
 
-    }
-
-    // 計時開始
-    const game = () => {
+      // 射擊殭屍時
       for (const zombie of zombies) {
-        zombie.classList.remove('showup')
-      }
-
-      for (let i = 0; i < 3; i++) {
-        const random = Math.floor(Math.random() * 8)
-        zombies[random].classList.add('showup')
-      }
-    }
-
-    // 計時結束
-    const end = () => {
-      clearInterval(timer)
-      for (const zombie of zombies) {
-        zombie.classList.remove('showup')
-      }
-    }
-
-    // 更改殭屍圖片
-    // const changeSrc = () => {
-    //   document.getElementById('zombieimg').src = "/blood_zombie.png"
-    // }
-
-    // 射擊殭屍時
-    for (const zombie of zombies) {
-      zombie.onclick = () => {
-        if (zombie.classList.contains('showup')) {
-          zombie.classList.remove('showup')
-          score++
-          textScore.innerText = score
+        zombie.onclick = () => {
+          if (zombie.classList.contains('showup')) {
+            zombie.classList.remove('showup')
+            score++
+            textScore.innerText = score
+          }
+          // akshoot.play()
         }
-        // akshoot.play()
       }
-    }
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>
